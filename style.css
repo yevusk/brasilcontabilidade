@@ -14,6 +14,7 @@
     --text-dark: #333;
     --text-light: #fff;
     --card-bg: #fff;
+    --whatsapp-green: #25d366;
 }
 
 body {
@@ -55,13 +56,19 @@ ul {
 }
 
 .logo img {
-    height: 50px; /* Ajuste a altura da logo aqui */
+    height: 50px; /* Altura da logo */
     width: auto;
+    transition: transform 0.3s ease; /* Transição para o efeito de hover */
 }
 
-/* Estilo para o menu hambúrguer */
+/* Efeito de hover na logo */
+.logo a:hover img {
+    transform: scale(1.05); /* Aumenta a logo em 5% ao passar o mouse */
+}
+
+/* Estilo para o menu hambúrguer (escondido em desktop) */
 .menu-toggle {
-    display: none; /* Esconde o botão por padrão em telas grandes */
+    display: none;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -83,7 +90,50 @@ ul {
     color: var(--primary-color);
 }
 
-/* ------------------- Seções (sem alterações) ------------------- */
+/* Centralização do menu em telas maiores */
+@media (min-width: 769px) {
+    .header .container {
+        /* Mantém a logo na esquerda e o menu na direita */
+        justify-content: space-between;
+    }
+    .nav-menu {
+        /* Aumenta a área do menu para uma melhor centralização visual */
+        margin-left: auto;
+    }
+}
+
+/* ------------------- Botão de WhatsApp ------------------- */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--whatsapp-green);
+    color: var(--text-light);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 9999;
+    animation: pulse 2s infinite ease-in-out; /* Animação de pulso */
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Animação do botão de WhatsApp */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* ------------------- Seções (sem grandes alterações) ------------------- */
 section {
     padding: 5rem 0;
 }
@@ -266,25 +316,26 @@ section {
 /* ------------------- Responsividade ------------------- */
 @media (max-width: 768px) {
     .header .container {
-        flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+        flex-wrap: wrap;
         justify-content: space-between;
     }
-
+    
     .nav-menu {
-        display: none; /* Esconde o menu por padrão */
+        display: none;
         flex-direction: column;
         width: 100%;
         background-color: var(--text-light);
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         position: absolute;
-        top: 100%; /* Posição abaixo do cabeçalho */
+        top: 100%;
         left: 0;
         padding: 1rem 0;
-        border-top: 1px solid #ddd;
+        border-top: 1px solid #eee;
+        transition: all 0.3s ease-in-out;
     }
 
     .nav-menu.active {
-        display: flex; /* Mostra o menu quando a classe 'active' está presente */
+        display: flex;
     }
 
     .nav-menu ul {
@@ -305,7 +356,7 @@ section {
     }
 
     .menu-toggle {
-        display: block; /* Mostra o botão do menu hambúrguer */
+        display: block;
     }
 
     .hero-content h2 {
@@ -324,9 +375,5 @@ section {
 @media (max-width: 480px) {
     .hero-content h2 {
         font-size: 2rem;
-    }
-
-    .logo img {
-        height: 40px; /* Reduz a logo em telas muito pequenas */
     }
 }
