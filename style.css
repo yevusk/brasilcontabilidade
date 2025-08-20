@@ -88,19 +88,22 @@ ul {
     color: var(--primary-color);
 }
 
-/* Melhorando o menu de navegação em desktop */
+/* Melhorando e Centralizando o menu de navegação em desktop */
 @media (min-width: 769px) {
     .header .container {
+        /* Permite que o menu e a logo ocupem os extremos */
         justify-content: space-between;
     }
 
     .nav-menu {
-        flex-grow: 1; /* Permite que o menu ocupe o espaço disponível */
-        text-align: center;
+        /* Ocupa o espaço restante e centraliza o menu nele */
+        flex-grow: 1;
+        display: flex;
+        justify-content: center; /* **CORREÇÃO:** Centraliza o menu na horizontal */
     }
 
     .nav-menu ul {
-        justify-content: flex-end; /* Alinha o menu à direita */
+        justify-content: center; /* **CORREÇÃO:** Garante que os itens do menu fiquem centrados */
     }
 }
 
@@ -235,13 +238,14 @@ section {
 /* Seção de Contato */
 .contact {
     background: var(--text-light);
-    text-align: center;
+    text-align: center; /* **CORREÇÃO:** Centraliza o título e o conteúdo */
 }
 
 .contact-info {
     max-width: 800px;
     margin: 0 auto;
     font-size: 1.1rem;
+    text-align: center; /* **CORREÇÃO:** Garante a centralização dos textos */
 }
 
 .contact-info p {
@@ -277,7 +281,7 @@ section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
-    text-align: left;
+    text-align: center; /* **CORREÇÃO:** Centraliza o texto nas colunas */
 }
 
 .footer-content h4 {
@@ -299,9 +303,10 @@ section {
 
 .footer-content .social-links {
     margin-top: 1rem;
+    justify-content: center; /* **CORREÇÃO:** Centraliza os ícones */
 }
 
-.footer-content .social-links a {
+.footer-social .social-links a {
     color: var(--text-light);
 }
 
@@ -336,13 +341,11 @@ section {
     transform: scale(1.1);
 }
 
-/* Animação do botão de WhatsApp */
 @keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
 }
-
 
 /* ------------------- Responsividade ------------------- */
 @media (max-width: 768px) {
